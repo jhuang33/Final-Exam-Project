@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Downloads</title>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">YouTube Converter</a>
+    <nav class="links">
+      <a href="/">Main</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Downloads</h1>
+
+    <form method="POST" action="/downloads/clear">
+      <button class="danger" type="submit">Clear Downloads</button>
+    </form>
+
+    <% if (downloads.length === 0) { %>
+      <p>No history yet.</p>
+    <% } %>
+
+    <div class="list">
+      <% downloads.forEach(d => { %>
+        <div class="card row">
+          <div>
+            <div class="title"><%= d.title || d.youtubeUrl %></div>
+            <div class="muted">
+              <%= d.format %> • <%= d.status %> • <%= d.createdAt.toDateString() %>
+            </div>
+
+            <% if (d.thumbnailUrl) { %>
+              <img class="thumb" src="<%= d.thumbnailUrl %>" alt="thumbnail" />
+            <% } %>
+
+            <% if (d.error) { %>
+              <div class="error">Error: <%= d.error %></div>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </main>
+</body>
+</html>

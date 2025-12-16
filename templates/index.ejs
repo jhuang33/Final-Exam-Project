@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Youtube to MP4/MP3 Converter</title>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">YouTube Converter</a>
+    <nav class="links">
+      <a href="/downloads">Downloads</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Convert</h1>
+
+    <form class="card" method="POST" action="/convert">
+      <label for="youtubeUrl">YouTube URL</label>
+      <input id="youtubeUrl" type="url" name="youtubeUrl"
+             placeholder="https://www.youtube.com/watch?v=..." required />
+
+      <label for="format">Format</label>
+      <select name="format" required>
+        <optgroup label="Video">
+          <option value="360">360p</option>
+          <option value="480">480p</option>
+          <option value="720">720p</option>
+          <option value="1080">1080p</option>
+          <option value="1440">1440p</option>
+          <option value="4k">4k</option>
+        </optgroup>
+        <optgroup label="Audio">
+          <option value="mp3">mp3</option>
+          <option value="m4a">m4a</option>
+          <option value="webm">webm</option>
+          <option value="aac">aac</option>
+        </optgroup>
+      </select>
+
+
+      <button type="submit">Start</button>
+    </form>
+
+    <% if (error) { %>
+      <div class="error"><%= error %></div>
+    <% } %>
+  </main>
+</body>
+</html>
